@@ -1,0 +1,44 @@
+--[[
+-------------------------------------------------------------------------------
+===============================================================================
+------------------ Anti-Force-Field by SKY / ITzNotSky#1428 -------------------
+===============================================================================
+-------------------------------------------------------------------------------
+--]]
+
+
+
+       game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Anti Force Field Activated!";
+    Text = "By ITzNotSky#1428";
+    })
+
+
+
+local Players = game:GetService("Players")
+
+local LocalPlayer = Players.LocalPlayer
+local character = LocalPlayer.Character
+while wait() do
+for _, v in pairs(character:GetChildren()) do
+    if v:IsA("ForceField") then
+        v:Destroy() 
+    end
+end
+
+LocalPlayer.CharacterAdded:Connect(function(newChar)
+    newChar.ChildAdded:Connect(function(object)
+        if object:IsA("ForceField") then
+            object:Destroy() 
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Anti Force Field Activated!";
+    Text = "By ITzNotSky#1428";
+    })
+        end
+    end)
+end)
+end
+
+
+
+
